@@ -1,0 +1,54 @@
+<div class="row mx-auto fit-content">
+  <div class="col fit-content">
+    <img
+      src="{{ this.pokemon?.img }}"
+      alt="{{ this.pokemon?.name }}"
+      class="img-thumbnail"
+    />
+  </div>
+  <div class="col fit-content">
+    <h3>
+      {{ this.pokemon?.number }}
+    </h3>
+    <h1>
+      {{ this.pokemon?.name | titlecase }}
+    </h1>
+  </div>
+  <div class="col">
+    <div>
+      tipo
+    </div>
+    <ul>
+      <li>stat</li>
+      <li>stat</li>
+      <li>stat</li>
+      <li>stat</li>
+      <li>stat</li>
+    </ul>
+  </div>
+</div>
+<div class="row mx-auto justify-content-center mt-3">
+  <button
+    type="button"
+    class="btn btn-primary fit-content"
+    (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseExample"
+  >
+    Tell me more!
+  </button>
+  <div
+    id="collapseExample"
+    [ngbCollapse]="isCollapsed"
+    class="card card-body mt-1"
+  >
+    <div class="col-xs">
+      mosse
+      <ul>
+        <li>mossa</li>
+        <li>mossa</li>
+        <li>mossa</li>
+      </ul>
+    </div>
+  </div>
+</div>
