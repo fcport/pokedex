@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           types,
           stats,
           [{ name: 'dsds' }]
+          
         );
       });
   }
