@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Pokemon } from '../model/pokemon';
+import { Moves, Pokemon } from '../model/pokemon';
+import { PokemonService } from './pokemon.service';
 
 @Component({
   selector: 'app-pokemon',
@@ -7,11 +9,17 @@ import { Pokemon } from '../model/pokemon';
   styleUrls: ['./pokemon.component.css'],
 })
 export class PokemonComponent implements OnInit {
-   @Input() pokemon?: Pokemon;
+  @Input() pokemon?: Pokemon;
   isCollapsed: boolean = true;
   isCollapsed2: boolean = true;
 
-  constructor() {}
+  selectedMove?: Moves;
+
+  constructor(private pkmService: PokemonService) {}
 
   ngOnInit(): void {}
+
+  onSelectMove(selectedMove: Moves) {
+    this.pkmService.searchMove(selectedMove.url);
+  }
 }

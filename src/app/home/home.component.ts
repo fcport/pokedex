@@ -1,20 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  combineLatest,
-  combineLatestAll,
-  concatAll,
-  concatMap,
-  exhaustMap,
-  map,
-  mergeMap,
-  Subscription,
-  switchMap,
-  tap,
+  Subscription
 } from 'rxjs';
-import { MovesResponse } from '../model/moves-response';
 import { Ability, Moves, MyStat, Pokemon } from '../model/pokemon';
 import { PokemonResponse, Stat, Type } from '../model/pokemon-response';
+import { PokemonService } from '../pokemon/pokemon.service';
 
 @Component({
   selector: 'app-home',
@@ -28,51 +19,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   pokemon?: Pokemon;
 
-  constructor(private api: HttpClient) {}
+  constructor(private api: HttpClient, private pkmService: PokemonService) {}
 
   ngOnDestroy(): void {
     if (!!this.sub) this.sub.unsubscribe;
   }
 
   ngOnInit(): void {
-    this.searchByNumber();
+    //this.searchByNumber();
+    this.sub = this.pkmService.pokemon.subscribe(pkm => this.pokemon = pkm)
+    this.pkmService.searchPokemon(Math.floor(Math.random() * 151) + 1);
   }
 
-  searchByNumber() {
-    const num = Math.floor(Math.random() * 151) + 1;
-    //console.log(num);
-
-    const pokemon$ = this.api
-      .get<PokemonResponse>(this.URL + num)
-      .subscribe((res) => {
-        const types: string[] = res.types.map((type: Type) => type.type.name);
-
-        const stats: MyStat[] = res.stats.map((stat: Stat) => {
-          return { name: stat.stat.name, value: stat.base_stat };
-        });
-        console.log(res);
-
-        const moves: Moves[] = res.moves
-          .filter((currMove) => {
-            return (
-              currMove.version_group_details.filter(
-                (ver) => ver.level_learned_at !== 0
-              ).length > 0
-            );
-          })
-          .map((rawMove) => rawMove.move);
-
-        const abilities : Ability[] = res.abilities.map(ab => ab.ability)
-
-        this.pokemon = new Pokemon(
-          res.id,
-          res.name,
-          res.sprites.front_default,
-          types,
-          stats,
-          moves,
-          abilities
-        );
-      });
-  }
 }
