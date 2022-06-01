@@ -1,15 +1,20 @@
 <!-- 
     Home page will contain a stilized pokedex with commands
  -->
-<div class = "row">
-    <div class = "infos" *ngIf="!!this.pokemon; else pokemonNotFound" >
-        <app-pokemon [pokemon]="this.pokemon"></app-pokemon>
+<div class="row">
+  <div class="row">
+    <div class="col-sm search d-flex flex-row-reverse w-25 p-3">
+      <input type="text" name="search" class="form-control w-25 " #searchQuery />
+      <button class="btn btn-primary" (click)="searchPokemon()">Search</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="infos" *ngIf="!!this.pokemon; else pokemonNotFound">
+      <app-pokemon [pokemon]="this.pokemon"></app-pokemon>
     </div>
     <ng-template #pokemonNotFound>
-        <h2>Cant find this pokemon!</h2>
-
+      <h2>Cant find this pokemon!</h2>
     </ng-template>
-    
-    
-
+  </div>
+  
 </div>

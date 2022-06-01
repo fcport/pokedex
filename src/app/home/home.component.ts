@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   Subscription
 } from 'rxjs';
@@ -14,6 +14,7 @@ import { PokemonService } from '../pokemon/pokemon.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   URL: string = 'https://pokeapi.co/api/v2/pokemon/';
+  @ViewChild('searchQuery') searchQuery ?: ElementRef;
 
   sub?: Subscription;
 
@@ -31,4 +32,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.pkmService.searchPokemon(Math.floor(Math.random() * 151) + 1);
   }
 
+  searchPokemon(){ 
+    console.log(this.searchQuery?.nativeElement.value);
+    this.pkmService.searchPokemon(this.searchQuery?.nativeElement.value)
+  }
+ 
 }

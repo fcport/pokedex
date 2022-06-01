@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Subject } from 'rxjs';
+import { firstValueFrom, map, Observable, Subject } from 'rxjs';
 import { MovesResponse } from '../model/moves-response';
 import { Ability, Moves, MyStat, Pokemon } from '../model/pokemon';
-import { PokemonResponse, Stat, Type } from '../model/pokemon-response';
+import { Move, PokemonResponse, Stat, Type } from '../model/pokemon-response';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +52,7 @@ export class PokemonService {
       .subscribe((res) => this.pokemon.next(res));
   }
 
-  searchMove(url: string) {
-    this.http.get<MovesResponse>(url).subscribe((res) => console.log(res));
+  searchMove(url: string): Observable<MovesResponse> {
+    return this.http.get<MovesResponse>(url);
   }
 }

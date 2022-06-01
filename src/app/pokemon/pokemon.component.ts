@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, ModuleWithProviders, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MovesResponse } from '../model/moves-response';
 import { Moves, Pokemon } from '../model/pokemon';
 import { PokemonService } from './pokemon.service';
 
@@ -13,6 +15,8 @@ export class PokemonComponent implements OnInit {
   isCollapsed: boolean = true;
   isCollapsed2: boolean = true;
 
+  moveSelected?: Observable<MovesResponse>;
+
   selectedMove?: Moves;
 
   constructor(private pkmService: PokemonService) {}
@@ -20,6 +24,6 @@ export class PokemonComponent implements OnInit {
   ngOnInit(): void {}
 
   onSelectMove(selectedMove: Moves) {
-    this.pkmService.searchMove(selectedMove.url);
+    this.moveSelected = this.pkmService.searchMove(selectedMove.url);
   }
 }

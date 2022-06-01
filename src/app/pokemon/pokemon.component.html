@@ -50,7 +50,12 @@
     >
       <div class="col-xs">
         <ul>
-          <li *ngFor="let move of this.pokemon?.moves" (click)="onSelectMove(move)">{{ move.name }}</li>
+          <li
+            *ngFor="let move of this.pokemon?.moves"
+            (click)="onSelectMove(move)"
+          >
+            {{ move.name }}
+          </li>
         </ul>
       </div>
     </div>
@@ -70,7 +75,14 @@
       [ngbCollapse]="isCollapsed2"
       class="card card-body mt-1"
     >
-      <div class="col-xs" >some stuff - more infos</div>
+      <div class="col-xs" *ngIf="!!this.moveSelected; else movesLoading">
+        <h3>{{ (this.moveSelected | async)?.name | titlecase}}</h3>
+        <div>accuracy: {{ (this.moveSelected | async)?.accuracy }}</div>
+        <div>pp: {{ (this.moveSelected | async)?.pp }}</div>
+        <div>priority: {{ (this.moveSelected | async)?.priority }}</div>
+        <div>power: {{ (this.moveSelected | async)?.power }}</div>
+      </div>
+      <ng-template #movesLoading>Select move!</ng-template>
     </div>
   </div>
 </div>
