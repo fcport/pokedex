@@ -2,12 +2,13 @@
     Home page will contain a stilized pokedex with commands
  -->
 <div class = "row">
-    <div class = "infos">
+    <div class = "infos" *ngIf="!!this.pokemon; else pokemonNotFound" >
         <app-pokemon [pokemon]="this.pokemon"></app-pokemon>
     </div>
-    <div>
+    <ng-template #pokemonNotFound>
+        <h2>Cant find this pokemon!</h2>
 
-    </div>
+    </ng-template>
     
     
 

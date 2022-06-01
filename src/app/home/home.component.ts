@@ -9,10 +9,11 @@ import {
   map,
   mergeMap,
   Subscription,
+  switchMap,
   tap,
 } from 'rxjs';
 import { MovesResponse } from '../model/moves-response';
-import { MyStat, Pokemon } from '../model/pokemon';
+import { Ability, Moves, MyStat, Pokemon } from '../model/pokemon';
 import { PokemonResponse, Stat, Type } from '../model/pokemon-response';
 
 @Component({
@@ -40,29 +41,37 @@ export class HomeComponent implements OnInit, OnDestroy {
   searchByNumber() {
     const num = Math.floor(Math.random() * 151) + 1;
     //console.log(num);
-    const move$ = this.api
+
+    const pokemon$ = this.api
       .get<PokemonResponse>(this.URL + num)
-      .pipe(
-        concatMap((res) => this.api.get<MovesResponse>(res.moves[0].move.url))
-      );
-     const pokemon$ =  this.api
-     .get<PokemonResponse>(this.URL + num);
+      .subscribe((res) => {
+        const types: string[] = res.types.map((type: Type) => type.type.name);
 
-     combineLatest([pokemon$, move$]).subscribe((res) => {
-        const types: string[] = res[0].types.map((type: Type) => type.type.name);
-
-        const stats: MyStat[] = res[0].stats.map((stat: Stat) => {
+        const stats: MyStat[] = res.stats.map((stat: Stat) => {
           return { name: stat.stat.name, value: stat.base_stat };
         });
+        console.log(res);
+
+        const moves: Moves[] = res.moves
+          .filter((currMove) => {
+            return (
+              currMove.version_group_details.filter(
+                (ver) => ver.level_learned_at !== 0
+              ).length > 0
+            );
+          })
+          .map((rawMove) => rawMove.move);
+
+        const abilities : Ability[] = res.abilities.map(ab => ab.ability)
 
         this.pokemon = new Pokemon(
-          res[0].id,
-          res[0].name,
-          res[0].sprites.front_default,
+          res.id,
+          res.name,
+          res.sprites.front_default,
           types,
           stats,
-          [{ name: 'dsds' }]
-          
+          moves,
+          abilities
         );
       });
   }

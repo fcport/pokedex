@@ -7,8 +7,9 @@ import { Pokemon } from '../model/pokemon';
   styleUrls: ['./pokemon.component.css'],
 })
 export class PokemonComponent implements OnInit {
-  @Input() pokemon?: Pokemon;
+   @Input() pokemon?: Pokemon;
   isCollapsed: boolean = true;
+  isCollapsed2: boolean = true;
 
   constructor() {}
 
