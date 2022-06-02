@@ -1,26 +1,23 @@
-<div class="row">
-  <div class="w-25 p-3 searchbar">
-    <div class="input-group mb-3">
-      <button class="btn btn-success" (click)="searchPokemon()">Search</button>
+<div class="col-sm p-3 searchbar">
+  <div class="input-group mb-3">
+    <button class="btn btn-success" (click)="searchPokemon()">Search</button>
 
-      <input
-        type="text"
-        name="search"
-        class="form-control w-25"
-        aria-describedby="searchHelpBlock"
-        #searchQuery
-      />
-    </div>
-    <span id="searchHelpBlock" class="form-text text-muted" *ngIf="!!this.error"
-      >Pokemon not found!</span
-    >
+    <input
+      type="text"
+      name="search"
+      class="form-control w-25"
+      aria-describedby="searchHelpBlock"
+      #searchQuery
+    />
   </div>
-  <div class="row">
-    <div class="infos" *ngIf="!!this.pokemon; else pokemonNotFound">
-      <app-pokemon [pokemon]="this.pokemon"></app-pokemon>
-    </div>
-    <ng-template #pokemonNotFound>
-      <h2>Cant find this pokemon!</h2>
-    </ng-template>
-  </div>
+  <span id="searchHelpBlock" class="form-text text-muted" *ngIf="!!this.error"
+    >Pokemon not found!</span
+  >
 </div>
+
+<div class="infos" *ngIf="!!this.pokemon; else pokemonNotFound">
+  <app-pokemon [pokemon]="this.pokemon"></app-pokemon>
+</div>
+<ng-template #pokemonNotFound>
+  <h2>Cant find this pokemon!</h2>
+</ng-template>

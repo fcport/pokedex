@@ -1,21 +1,19 @@
-<div class="row mx-auto">
-  <div class="col-4">
-    <div class="col fit-content">
+<div class="row mx-auto mb-3">
+  <div class="col-sm-4 card card-body h-100">
+    <div class="col-sm fit-content">
       <img
         src="{{ this.pokemon?.img }}"
         alt="{{ this.pokemon?.name }}"
         class="img-thumbnail"
       />
     </div>
-    <div class="col">
+    <div class="col-sm">
       <h1>
         {{ this.pokemon?.name | titlecase }}
       </h1>
-      <h3>
-        {{ this.pokemon?.number }}
-      </h3>
+      <h3>N° {{ this.pokemon?.number }}</h3>
     </div>
-    <div class="col">
+    <div class="col-sm">
       <h3>{{ this.pokemon?.tipo }}</h3>
       <ul>
         <li *ngFor="let stat of this.pokemon?.stat">
@@ -23,7 +21,7 @@
         </li>
       </ul>
     </div>
-    <div class="col">
+    <div class="col-sm">
       <h3>Possibile abilities</h3>
       <ul>
         <li *ngFor="let ability of this.pokemon?.abilities">
@@ -33,7 +31,7 @@
     </div>
   </div>
 
-  <div class="col-4">
+  <div class="col-sm-4 h-100">
     <button
       type="button"
       class="btn btn-warning fit-content"
@@ -54,13 +52,13 @@
             *ngFor="let move of this.pokemon?.moves"
             (click)="onSelectMove(move)"
           >
-            {{ move.name | titlecase }}
+            <a href="#">{{ move.name | titlecase }}</a>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="col-4">
+  <div class="col-sm-4 h-100">
     <button
       type="button"
       class="btn btn-info fit-content"
@@ -75,7 +73,7 @@
       [ngbCollapse]="isCollapsed2"
       class="card card-body mt-1"
     >
-      <div class="col-xs h-100 " *ngIf="!!this.moveSelected; else movesLoading">
+      <div class="col-xs" *ngIf="!!this.moveSelected; else movesLoading">
         <h3>{{ (this.moveSelected | async)?.name | titlecase }}</h3>
         <div>accuracy: {{ (this.moveSelected | async)?.accuracy }}</div>
         <div>pp: {{ (this.moveSelected | async)?.pp }}</div>
