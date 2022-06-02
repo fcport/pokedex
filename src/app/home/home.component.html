@@ -1,12 +1,19 @@
-<!-- 
-    Home page will contain a stilized pokedex with commands
- -->
 <div class="row">
-  <div class="row">
-    <div class="col-sm search d-flex flex-row-reverse w-25 p-3">
-      <input type="text" name="search" class="form-control w-25 " #searchQuery />
-      <button class="btn btn-primary" (click)="searchPokemon()">Search</button>
+  <div class="w-25 p-3 searchbar">
+    <div class="input-group mb-3">
+      <button class="btn btn-success" (click)="searchPokemon()">Search</button>
+
+      <input
+        type="text"
+        name="search"
+        class="form-control w-25"
+        aria-describedby="searchHelpBlock"
+        #searchQuery
+      />
     </div>
+    <span id="searchHelpBlock" class="form-text text-muted" *ngIf="!!this.error"
+      >Pokemon not found!</span
+    >
   </div>
   <div class="row">
     <div class="infos" *ngIf="!!this.pokemon; else pokemonNotFound">
@@ -16,5 +23,4 @@
       <h2>Cant find this pokemon!</h2>
     </ng-template>
   </div>
-  
 </div>

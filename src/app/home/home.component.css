@@ -1,11 +1,10 @@
 .infos {
   padding: 5%;
 }
-.search {
-  margin-top: 5%;
-  margin-right : 5%;
-  text-align: right;
+
+.main-row {
+  max-width: fit-content;
 }
-.search input[type=text] {
-    margin-left: 0.1%;
-  }
+.searchbar {
+  margin-left: 1em;
+}

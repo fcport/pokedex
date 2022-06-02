@@ -1,42 +1,42 @@
-<div class="row mx-auto fit-content">
-  <div class="col fit-content">
-    <img
-      src="{{ this.pokemon?.img }}"
-      alt="{{ this.pokemon?.name }}"
-      class="img-thumbnail"
-    />
+<div class="row mx-auto">
+  <div class="col-4">
+    <div class="col fit-content">
+      <img
+        src="{{ this.pokemon?.img }}"
+        alt="{{ this.pokemon?.name }}"
+        class="img-thumbnail"
+      />
+    </div>
+    <div class="col">
+      <h1>
+        {{ this.pokemon?.name | titlecase }}
+      </h1>
+      <h3>
+        {{ this.pokemon?.number }}
+      </h3>
+    </div>
+    <div class="col">
+      <h3>{{ this.pokemon?.tipo }}</h3>
+      <ul>
+        <li *ngFor="let stat of this.pokemon?.stat">
+          {{ stat.name }} : {{ stat.value }}
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Possibile abilities</h3>
+      <ul>
+        <li *ngFor="let ability of this.pokemon?.abilities">
+          {{ ability.name | titlecase }}
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="col">
-    <h1>
-      {{ this.pokemon?.name | titlecase }}
-    </h1>
-    <h3>
-      {{ this.pokemon?.number }}
-    </h3>
-  </div>
-  <div class="col">
-    <h3>{{ this.pokemon?.tipo }}</h3>
-    <ul>
-      <li *ngFor="let stat of this.pokemon?.stat">
-        {{ stat.name }} : {{ stat.value }}
-      </li>
-    </ul>
-  </div>
-  <div class="col">
-    <h3>Possibile abilities</h3>
-    <ul>
-      <li *ngFor="let ability of this.pokemon?.abilities">
-        {{ ability.name }}
-      </li>
-    </ul>
-  </div>
-</div>
 
-<div class="row justify-content-center mt-3">
-  <div class="col">
+  <div class="col-4">
     <button
       type="button"
-      class="btn btn-primary fit-content mx-auto"
+      class="btn btn-warning fit-content"
       (click)="isCollapsed = !isCollapsed"
       [attr.aria-expanded]="!isCollapsed"
       aria-controls="collapseExample"
@@ -54,16 +54,16 @@
             *ngFor="let move of this.pokemon?.moves"
             (click)="onSelectMove(move)"
           >
-            {{ move.name }}
+            {{ move.name | titlecase }}
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="col">
+  <div class="col-4">
     <button
       type="button"
-      class="btn btn-primary fit-content mx-auto"
+      class="btn btn-info fit-content"
       (click)="isCollapsed2 = !isCollapsed2"
       [attr.aria-expanded]="!isCollapsed2"
       aria-controls="collapseExample"
@@ -75,12 +75,17 @@
       [ngbCollapse]="isCollapsed2"
       class="card card-body mt-1"
     >
-      <div class="col-xs" *ngIf="!!this.moveSelected; else movesLoading">
-        <h3>{{ (this.moveSelected | async)?.name | titlecase}}</h3>
+      <div class="col-xs h-100 " *ngIf="!!this.moveSelected; else movesLoading">
+        <h3>{{ (this.moveSelected | async)?.name | titlecase }}</h3>
         <div>accuracy: {{ (this.moveSelected | async)?.accuracy }}</div>
         <div>pp: {{ (this.moveSelected | async)?.pp }}</div>
         <div>priority: {{ (this.moveSelected | async)?.priority }}</div>
         <div>power: {{ (this.moveSelected | async)?.power }}</div>
+        <div
+          *ngFor="let moveDescr of (this.moveSelected | async)?.effect_entries"
+        >
+          {{ moveDescr.short_effect | replace: "$effect_chance%":"" }}
+        </div>
       </div>
       <ng-template #movesLoading>Select move!</ng-template>
     </div>

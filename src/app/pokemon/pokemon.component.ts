@@ -12,8 +12,8 @@ import { PokemonService } from './pokemon.service';
 })
 export class PokemonComponent implements OnInit {
   @Input() pokemon?: Pokemon;
-  isCollapsed: boolean = true;
-  isCollapsed2: boolean = true;
+  isCollapsed: boolean = false;
+  isCollapsed2: boolean = false;
 
   moveSelected?: Observable<MovesResponse>;
 

@@ -1,16 +1,16 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AdditionalInfoComponent } from './pokemon/additional-info/additional-info.component';
+import { ReplacePipe } from './utils/replace.pipe';
+
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PokemonComponent, AdditionalInfoComponent],
+  declarations: [AppComponent, HomeComponent, PokemonComponent, ReplacePipe],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -15,6 +15,7 @@ import { PokemonService } from '../pokemon/pokemon.service';
 export class HomeComponent implements OnInit, OnDestroy {
   URL: string = 'https://pokeapi.co/api/v2/pokemon/';
   @ViewChild('searchQuery') searchQuery ?: ElementRef;
+  error?: {code: number, value: string};
 
   sub?: Subscription;
 
