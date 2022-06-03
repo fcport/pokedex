@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    //this.searchByNumber();
     this.sub = this.pkmService.pokemon.subscribe(pkm => this.pokemon = pkm)
     this.pkmService.searchPokemon(Math.floor(Math.random() * 151) + 1);
   }
@@ -36,6 +35,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   searchPokemon(){ 
     console.log(this.searchQuery?.nativeElement.value);
     this.pkmService.searchPokemon(this.searchQuery?.nativeElement.value)
+  }
+
+  randomPokemon(){
+    this.pkmService.searchPokemon(Math.floor(Math.random() * 151) + 1);
   }
  
 }

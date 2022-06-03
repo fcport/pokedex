@@ -15,7 +15,7 @@ export class PokemonComponent implements OnInit {
   isCollapsed: boolean = false;
   isCollapsed2: boolean = false;
 
-  moveSelected?: Observable<MovesResponse>;
+  moveSelectedInfos?: Observable<MovesResponse>;
 
   selectedMove?: Moves;
 
@@ -24,6 +24,6 @@ export class PokemonComponent implements OnInit {
   ngOnInit(): void {}
 
   onSelectMove(selectedMove: Moves) {
-    this.moveSelected = this.pkmService.searchMove(selectedMove.url);
+    this.moveSelectedInfos = this.pkmService.searchMove(selectedMove.url);
   }
 }
