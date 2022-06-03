@@ -1,7 +1,9 @@
 <div class="col-sm p-3 searchbar">
   <div class="input-group mb-3">
     <button class="btn btn-success" (click)="searchPokemon()">Search</button>
-    <button class="btn btn-outline-dark" (click)="randomPokemon()">Random!</button>
+    <button class="btn btn-outline-dark" (click)="randomPokemon()">
+      Random!
+    </button>
 
     <input
       type="text"
@@ -11,8 +13,12 @@
       #searchQuery
     />
   </div>
-  <span id="searchHelpBlock" class="form-text text-muted" *ngIf="!!this.error"
-    >Pokemon not found!</span
+  <div class="loader" *ngIf="this.loading">Loading...</div>
+  <span
+    id="searchHelpBlock"
+    class="form-text help-box"
+    *ngIf="!!this.error"
+    >{{ this.error.value }}</span
   >
 </div>
 

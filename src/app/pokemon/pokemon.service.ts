@@ -1,6 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom, map, Observable, Subject } from 'rxjs';
+import {
+  catchError,
+  firstValueFrom,
+  map,
+  Observable,
+  of,
+  Subject,
+  throwError,
+  timeout,
+} from 'rxjs';
 import { MovesResponse } from '../model/moves-response';
 import { Ability, Moves, MyStat, Pokemon } from '../model/pokemon';
 import { Move, PokemonResponse, Stat, Type } from '../model/pokemon-response';
@@ -10,6 +19,10 @@ import { Move, PokemonResponse, Stat, Type } from '../model/pokemon-response';
 })
 export class PokemonService {
   pokemon: Subject<Pokemon> = new Subject<Pokemon>();
+  error: Subject<{ code: number; value: string }> = new Subject<{
+    code: number;
+    value: string;
+  }>();
   constructor(private http: HttpClient) {}
 
   pokemonURL = 'https://pokeapi.co/api/v2/pokemon/';
@@ -24,7 +37,6 @@ export class PokemonService {
           const stats: MyStat[] = res.stats.map((stat: Stat) => {
             return { name: stat.stat.name, value: stat.base_stat };
           });
-          console.log(res);
 
           const moves: Moves[] = res.moves
             .filter((currMove) => {
@@ -49,7 +61,16 @@ export class PokemonService {
           );
         })
       )
-      .subscribe((res) => this.pokemon.next(res));
+      .subscribe({
+        next: (res) => {
+          console.log('>>>> pokemon from http sub');
+          this.pokemon.next(res as Pokemon);
+        },
+        error: (err) => {
+          console.log('>>>> error from http sub');
+          this.error.next({ code: err.status, value: err.error });
+        },
+      });
   }
 
   searchMove(url: string): Observable<MovesResponse> {
