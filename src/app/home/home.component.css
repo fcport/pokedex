@@ -1,16 +1,15 @@
 .infos {
   /* padding-left: 5%; */
-  margin-left:2em;
-  margin-right:2em;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 .searchbar {
   margin-left: 1em;
 }
-.help-box{
+.help-box {
   color: red;
 }
-
 
 /********************************
 >>>>>>>>>>>>>>>> spinner
@@ -40,7 +39,7 @@
 }
 .loader:before,
 .loader:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
 }
