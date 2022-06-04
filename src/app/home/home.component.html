@@ -8,8 +8,10 @@
     <input
       type="text"
       name="search"
-      class="form-control w-25"
+      class="form-control"
+      placeholder=" Insert name or number"
       aria-describedby="searchHelpBlock"
+      (keyup.enter)="searchPokemon()"
       #searchQuery
     />
   </div>

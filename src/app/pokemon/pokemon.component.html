@@ -1,5 +1,5 @@
-<div class="row mx-auto mb-3">
-  <div class="col-sm-4 card card-body h-100">
+<div class="row">
+  <div class="col-sm-6 card card-body h-100">
     <div class="col-sm fit-content">
       <img
         src="{{ this.pokemon?.img }}"
@@ -14,7 +14,7 @@
       <h3>N° {{ this.pokemon?.number }}</h3>
     </div>
     <div class="col-sm">
-      <h3>{{ this.pokemon!.tipo | betterArray}}</h3>
+      <h3>{{ this.pokemon!.tipo | betterArray }}</h3>
       <ul>
         <li *ngFor="let stat of this.pokemon?.stat">
           {{ stat.name }} : {{ stat.value }}
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class="col-sm-4 h-100">
+  <div class="col-sm-6 h-100">
     <button
       type="button"
       class="btn btn-warning fit-content"
@@ -52,13 +52,12 @@
             *ngFor="let move of this.pokemon?.moves"
             (click)="onSelectMove(move)"
           >
-            <a href="#">{{ move.name | titlecase }}</a>
+            <div href="#">{{ move.name | titlecase }}</div>
           </li>
         </ul>
       </div>
     </div>
-  </div>
-  <div class="col-sm-4 h-100">
+
     <button
       type="button"
       class="btn btn-info fit-content"
@@ -80,7 +79,9 @@
         <div>priority: {{ (this.moveSelectedInfos | async)?.priority }}</div>
         <div>power: {{ (this.moveSelectedInfos | async)?.power }}</div>
         <div
-          *ngFor="let moveDescr of (this.moveSelectedInfos | async)?.effect_entries"
+          *ngFor="
+            let moveDescr of (this.moveSelectedInfos | async)?.effect_entries
+          "
         >
           {{ moveDescr.short_effect | replace: "$effect_chance%":"" }}
         </div>
