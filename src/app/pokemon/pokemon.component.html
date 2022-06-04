@@ -1,5 +1,7 @@
+<!-- NOTE TO SELF USE THE FOLLOWING -->
+<!-- <p class="fs-1">.fs-1 text</p> -->
 <div class="row margin-main ">
-  <div class="col-sm-6 card card-body h-100">
+  <div class="col-sm-6 card card-body h-100 pokedex-style pokedex-style-green-text">
     <div class="col-sm fit-content">
       <img
         src="{{ this.pokemon?.img }}"
@@ -15,26 +17,26 @@
     </div>
     <div class="col-sm">
       <h3>{{ this.pokemon!.tipo | betterArray }}</h3>
-      <ul>
-        <li *ngFor="let stat of this.pokemon?.stat">
+      <ul class="list-group">
+        <li class="list-group-item pokedex-list-item fw-bold" *ngFor="let stat of this.pokemon?.stat">
           {{ stat.name }} : {{ stat.value }}
         </li>
       </ul>
     </div>
     <div class="col-sm">
       <h3>Possibile abilities</h3>
-      <ul>
-        <li *ngFor="let ability of this.pokemon?.abilities">
+      <ul class="list-group">
+        <li class="list-group-item pokedex-list-item " *ngFor="let ability of this.pokemon?.abilities">
           {{ ability.name | titlecase }}
         </li>
       </ul>
     </div>
   </div>
 
-  <div class="col-sm-6 h-100 margin-infos">
+  <div class="col-sm-6 h-100 margin-infos pokedex-style">
     <button
       type="button"
-      class="btn btn-warning fit-content small-maring"
+      class="btn btn-warning fit-content "
       (click)="isCollapsed = !isCollapsed"
       [attr.aria-expanded]="!isCollapsed"
       aria-controls="collapseExample"
@@ -44,11 +46,12 @@
     <div
       id="collapseExample"
       [ngbCollapse]="isCollapsed"
-      class="card card-body mt-1"
+      class="card card-body mt-1 small-margin-bot pokedex-style-green-bg"
     >
       <div class="col-xs">
-        <ul>
+        <ul class="list-group">
           <li
+          class="list-group-item"
             *ngFor="let move of this.pokemon?.moves"
             (click)="onSelectMove(move)"
           >
@@ -60,7 +63,7 @@
 
     <button
       type="button"
-      class="btn btn-info fit-content small-maring"
+      class="btn btn-info fit-content "
       (click)="isCollapsed2 = !isCollapsed2"
       [attr.aria-expanded]="!isCollapsed2"
       aria-controls="collapseExample"
@@ -70,7 +73,7 @@
     <div
       id="collapseExample"
       [ngbCollapse]="isCollapsed2"
-      class="card card-body mt-1"
+      class="card card-body mt-1 small-margin-bot pokedex-style-green-bg"
     >
       <div class="col-xs" *ngIf="!!this.moveSelectedInfos; else movesLoading">
         <h3>{{ (this.moveSelectedInfos | async)?.name | titlecase }}</h3>
