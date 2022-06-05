@@ -57,11 +57,9 @@ export class PokemonService {
       )
       .subscribe({
         next: (res) => {
-          console.log('>>>> pokemon from http sub');
           this.pokemon.next(res as Pokemon);
         },
         error: (err) => {
-          console.log('>>>> error from http sub');
           this.error.next({ code: err.status, value: err.error });
         },
       });

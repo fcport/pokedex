@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.sub = this.pkmService.pokemon.subscribe({
       next: (pkm) => {
-        console.log('>>>> pkm');
         this.pokemon = pkm as Pokemon;
         this.loading = false;
       },
