@@ -35,5 +35,5 @@
   <app-pokemon [pokemon]="this.pokemon" (arrowClicked) = "changePokemon($event)"></app-pokemon>
 </div>
 <ng-template #pokemonNotFound>
-  <h2>There was a very weird error</h2>
+  <div class="loader reduce-spinner">Loading...</div>
 </ng-template>
