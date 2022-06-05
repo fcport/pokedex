@@ -89,15 +89,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   changePokemon(prevOrNext: string) {
-    prevOrNext === 'prev'
-      ? this.nextPkm()
-      : this.prevPkm();
+    this.loading = true;
+    this.error = undefined;
+    this.pkmService.searchPokemon(
+      prevOrNext === 'prev'
+        ? this.pokemon!.number - 1
+        : this.pokemon!.number + 1
+    );
   }
 
-  nextPkm(){
-    this.pkmService.searchPokemon(this.pokemon!.number - 1)
-  }
-  prevPkm(){
-    this.pkmService.searchPokemon(this.pokemon!.number + 1)
-  }
 }

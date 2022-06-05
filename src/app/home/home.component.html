@@ -15,7 +15,11 @@
       #searchQuery
     />
   </div>
-  <div class="loader" *ngIf="this.loading">Loading...</div>
+  <span
+    class="form-text font-monospace"
+    *ngIf="this.loading"
+    >Loading...</span
+  >
   <span
     id="searchHelpBlock"
     class="form-text help-box"
