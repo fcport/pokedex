@@ -86,10 +86,10 @@
     >
       <div class="col-xs" *ngIf="!!this.moveSelectedInfos; else movesLoading">
         <h3>{{ (this.moveSelectedInfos | async)?.name | titlecase }}</h3>
-        <div>accuracy: {{ (this.moveSelectedInfos | async)?.accuracy }}</div>
-        <div>pp: {{ (this.moveSelectedInfos | async)?.pp }}</div>
-        <div>priority: {{ (this.moveSelectedInfos | async)?.priority }}</div>
-        <div>power: {{ (this.moveSelectedInfos | async)?.power }}</div>
+        <div>Accuracy: {{ (this.moveSelectedInfos | async)?.accuracy }}</div>
+        <div>PP: {{ (this.moveSelectedInfos | async)?.pp }}</div>
+        <div>Priority: {{ (this.moveSelectedInfos | async)?.priority }}</div>
+        <div>Power: {{ (this.moveSelectedInfos | async)?.power }}</div>
         <div
           *ngFor="
             let moveDescr of (this.moveSelectedInfos | async)?.effect_entries

@@ -29,6 +29,11 @@ a {
 }
 .pokedex-list-item.selectable{
   cursor: pointer;
+  transition: background-color 1s ease-out 100ms;
+}
+
+.pokedex-list-item.selectable:hover{
+  background-color: rgba(117, 225, 155, 100);
 }
 .pokedex-style-green-text {
   color: rgba(81, 175, 94, 255);

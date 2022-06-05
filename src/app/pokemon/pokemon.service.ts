@@ -1,18 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
-  catchError,
-  firstValueFrom,
   map,
-  Observable,
-  of,
-  Subject,
-  throwError,
-  timeout,
+  Observable, Subject
 } from 'rxjs';
 import { MovesResponse } from '../model/moves-response';
 import { Ability, Moves, MyStat, Pokemon } from '../model/pokemon';
-import { Move, PokemonResponse, Stat, Type } from '../model/pokemon-response';
+import { PokemonResponse, Stat, Type } from '../model/pokemon-response';
 
 @Injectable({
   providedIn: 'root',
