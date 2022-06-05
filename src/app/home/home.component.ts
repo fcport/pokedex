@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loading: boolean = false;
 
   sub?: Subscription;
-  errorFromService ?: Subscription;
+  errorFromService?: Subscription;
 
   pokemon?: Pokemon;
 
@@ -31,15 +31,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (!!this.sub) this.sub.unsubscribe();
-    if(!!this.errorFromService) this.errorFromService.unsubscribe()
+    if (!!this.errorFromService) this.errorFromService.unsubscribe();
   }
 
   ngOnInit(): void {
     //this.sub = this.pkmService.pokemon.subscribe((pkm) => (this.pokemon = pkm));
-    this.errorFromService = this.pkmService.error.subscribe(err => {
+    this.errorFromService = this.pkmService.error.subscribe((err) => {
       this.loading = false;
-      this.catchErr(err.code, err.value)
-    })
+      this.catchErr(err.code, err.value);
+    });
 
     this.sub = this.pkmService.pokemon.subscribe({
       next: (pkm) => {
@@ -86,5 +86,18 @@ export class HomeComponent implements OnInit, OnDestroy {
         };
         break;
     }
+  }
+
+  changePokemon(prevOrNext: string) {
+    prevOrNext === 'prev'
+      ? this.nextPkm()
+      : this.prevPkm();
+  }
+
+  nextPkm(){
+    this.pkmService.searchPokemon(this.pokemon!.number - 1)
+  }
+  prevPkm(){
+    this.pkmService.searchPokemon(this.pokemon!.number + 1)
   }
 }

@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, ModuleWithProviders, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MovesResponse } from '../model/moves-response';
 import { Moves, Pokemon } from '../model/pokemon';
@@ -12,6 +11,8 @@ import { PokemonService } from './pokemon.service';
 })
 export class PokemonComponent implements OnInit {
   @Input() pokemon?: Pokemon;
+  @Output() arrowClicked = new EventEmitter<string>();
+
   isCollapsed: boolean = false;
   isCollapsed2: boolean = false;
 
@@ -25,5 +26,11 @@ export class PokemonComponent implements OnInit {
 
   onSelectMove(selectedMove: Moves) {
     this.moveSelectedInfos = this.pkmService.searchMove(selectedMove.url);
+  }
+  previousPokemon() {
+    this.arrowClicked.emit('prev');
+  }
+  nextPokemon() {
+    this.arrowClicked.emit('next');
   }
 }

@@ -25,7 +25,7 @@
 </div>
 
 <div class="infos" *ngIf="!!this.pokemon; else pokemonNotFound">
-  <app-pokemon [pokemon]="this.pokemon"></app-pokemon>
+  <app-pokemon [pokemon]="this.pokemon" (arrowClicked) = "changePokemon($event)"></app-pokemon>
 </div>
 <ng-template #pokemonNotFound>
   <h2>There was a very weird error</h2>

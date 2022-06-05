@@ -10,58 +10,57 @@ a {
   font-size: 3rem;
 }
 
-.small-margin-top{
+.small-margin-top {
   margin-top: 2%;
 }
-.small-margin-bot{
+.small-margin-bot {
   margin-bottom: 2%;
 }
 
-
-.pokedex-style{
-  background-color: rgba(220,11,44,255);
+.pokedex-style {
+  background-color: rgba(220, 11, 44, 255);
   border-radius: 10px;
   padding: 1%;
-  border: solid 2px	rgb(38, 38, 38)
+  border: solid 2px rgb(38, 38, 38);
 }
-.pokedex-list-item{
+.pokedex-list-item {
+  background-color: rgba(81, 175, 94, 255);
   text-shadow: none;
 }
-.pokedex-style-green-text{
-  color: rgba(81,175,94,255);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+.pokedex-style-green-text {
+  color: rgba(81, 175, 94, 255);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
-.pokedex-style-green-bg{
-  background-color: rgba(81,175,94,255);
+.pokedex-style-green-bg {
+  background-color: rgba(81, 175, 94, 255);
 }
 
 @media only screen and (max-width: 573px) {
-
-  .margin-infos{
+  .margin-infos {
     margin-top: 2%;
   }
-  .small-maring{
+  .small-maring {
     margin-top: 2%;
   }
-  .pokedex-style{
-    background-color: rgba(220,11,44,255);
+  .pokedex-style {
+    background-color: rgba(220, 11, 44, 255);
     border-radius: 10px;
     padding: 2%;
   }
 }
 
 @media only screen and (min-width: 574px) {
-  .margin-main{
+  .margin-main {
     margin-left: 2%;
   }
-  .margin-info{
+  .margin-info {
     margin-top: 2%;
   }
-
 }
 
 @media only screen and (min-width: 992px) {
-  .margin-main{
+  .margin-main {
     margin-left: 15%;
     margin-right: 15%;
   }
@@ -74,4 +73,10 @@ a {
   }
 }
 
-
+.arrow {
+  width: 20%;
+  color: #000;
+}
+.arrow-right {
+  float: right;
+}
