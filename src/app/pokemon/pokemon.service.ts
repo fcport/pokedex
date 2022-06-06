@@ -23,7 +23,7 @@ export class PokemonService {
 
   searchPokemon(searchQuery: number | string) {
     this.http
-      .get<PokemonResponse>(this.pokemonURL + searchQuery)
+      .get<PokemonResponse>(this.pokemonURL + searchQuery.toLocaleString().toLowerCase())
       .pipe(
         map((res) => {
           const types: string[] = res.types.map((type: Type) => type.type.name);
