@@ -1,6 +1,6 @@
 # Pokedex
 
-This is a project i made for my front-end angular portfolio, i have used [Bootstrap 5](https://ng-bootstrap.github.io/#/home), and [PokeApi](https://pokeapi.co/).
+This is a project I made for my front-end Angular portfolio, I have used [Bootstrap 5](https://ng-bootstrap.github.io/#/home), and [PokeApi](https://pokeapi.co/).
 
 I'll keep updating this as I'll be learning new things ( *you never stop learning* ).
 
