@@ -1,10 +1,6 @@
 .fit-content {
   width: fit-content;
 }
-a {
-  color: black;
-  text-decoration: none;
-}
 
 .big-text {
   font-size: 3rem;
@@ -16,23 +12,31 @@ a {
 .small-margin-bot {
   margin-bottom: 2%;
 }
+.img-box {
+  box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.75) inset;
+  -moz-box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.75) inset;
+}
 
 .pokedex-style {
   background-color: rgba(220, 11, 44, 255);
   border-radius: 10px;
   padding: 1%;
   border: solid 2px rgb(38, 38, 38);
+  box-shadow: -1px 12px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 12px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 12px 5px 0px rgba(0, 0, 0, 0.75);
 }
 .pokedex-list-item {
   background-color: rgba(81, 175, 94, 255);
   text-shadow: none;
 }
-.pokedex-list-item.selectable{
+.pokedex-list-item.selectable {
   cursor: pointer;
   transition: background-color 1s ease-out 100ms;
 }
 
-.pokedex-list-item.selectable:hover{
+.pokedex-list-item.selectable:hover {
   background-color: rgba(117, 225, 155, 100);
 }
 .pokedex-style-green-text {
@@ -87,4 +91,7 @@ a {
 }
 .arrow-right {
   float: right;
+}
+* {
+  font-family: monospace;
 }
